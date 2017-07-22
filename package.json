@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-note-app",
+  "version": "1.0.0",
+  "description": "Step 1: install Node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darshan4694/NodeJS-Note-App.git"
+  },
+  "author": "Darshan Shah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darshan4694/NodeJS-Note-App/issues"
+  },
+  "homepage": "https://github.com/darshan4694/NodeJS-Note-App#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
