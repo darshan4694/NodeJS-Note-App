@@ -14,24 +14,27 @@ So, when we download the files of the project use 'npm install' command
 in project folder.
 It will install necessary modules according to the dependencies in the package.json
 */
-
 const _ = require('lodash');
+const yargs = require('yargs');
+const notes = require('./notes.js');
 
-// Examples:
-// 1: Check the the value is String or not
+var command = process.argv[2];
+var argv = yargs.argv;
 
-var checkString_1 = _.isString(1);
-var checkString_Darshan = _.isString("Darshan");
+console.log("Yargs args: ", argv);
 
-console.log("is 1 a String: "+checkString_1);
-console.log("is 'Darshan' a String: "+checkString_Darshan);
-
-// 2: Convert array to the set by eliminating duplicate values
-
-var array = ["Darshan", 1, "Shah", 1, "Darshan", 2, 3, 4, true, true];
-var arrayToSet = _.uniq(array);
-
-console.log("Initially the array is : " + array);
-console.log("After using 'uniq' ");
-console.log("New array ( converted to set ) : " + arrayToSet);
-
+if(command === 'add'){
+    //console.log("Note added");
+    notes.addNote(argv.title, argv.body);
+} else if(command === 'list'){
+     //console.log("List of notes");
+     notes.getAll();
+} else if(command === 'read'){
+    // console.log("Reading note");
+    notes.getNote(argv.title);
+} else if(command === 'remove'){
+    // console.log("Removing note");
+    notes.removeNote(argv.title);
+} else{
+    console.log("Command not recognized");
+}
