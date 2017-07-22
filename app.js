@@ -1,3 +1,7 @@
+/*
+Here I initialized package.json by using node init
+And then to intall 'lodash' : node install lodash --save
+*/
 const _ = require('lodash');
 
 // Examples:
