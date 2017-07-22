@@ -15,17 +15,26 @@ in project folder.
 It will install necessary modules according to the dependencies in the package.json
 */
 const _ = require('lodash');
+const yargs = require('yargs');
+const notes = require('./notes.js');
 
 var command = process.argv[2];
+var argv = yargs.argv;
+
+console.log("Yargs args: ", argv);
 
 if(command === 'add'){
-    console.log("Note added");
+    //console.log("Note added");
+    notes.addNote(argv.title, argv.body);
 } else if(command === 'list'){
-     console.log("List of notes");
+     //console.log("List of notes");
+     notes.getAll();
 } else if(command === 'read'){
-    console.log("Reading note");
+    // console.log("Reading note");
+    notes.getNote(argv.title);
 } else if(command === 'remove'){
-    console.log("Removing note");
+    // console.log("Removing note");
+    notes.removeNote(argv.title);
 } else{
     console.log("Command not recognized");
 }
