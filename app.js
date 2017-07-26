@@ -18,23 +18,31 @@ const _ = require('lodash');
 const yargs = require('yargs');
 const notes = require('./notes.js');
 
-var command = process.argv[2];
+const updateJsonFile = require('update-json-file');
+
+const filePath = './data/notesData.json';
+
+
 var argv = yargs.argv;
+var command = argv._[0];
 
 console.log("Yargs args: ", argv);
+//console.log(notesData);
 
-if(command === 'add'){
+if (command === 'add') {
     //console.log("Note added");
     notes.addNote(argv.title, argv.body);
-} else if(command === 'list'){
-     //console.log("List of notes");
-     notes.getAll();
-} else if(command === 'read'){
+} else if (command === 'list') {
+    //console.log("List of notes");
+    notes.getAll();
+} else if (command === 'read') {
     // console.log("Reading note");
     notes.getNote(argv.title);
-} else if(command === 'remove'){
+} else if (command === 'remove') {
     // console.log("Removing note");
     notes.removeNote(argv.title);
-} else{
+} else {
     console.log("Command not recognized");
 }
+
+

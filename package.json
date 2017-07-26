@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/darshan4694/NodeJS-Note-App#readme",
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "update-json-file": "^1.1.1",
+    "yargs": "^8.0.2"
   }
 }
