@@ -31,7 +31,16 @@ console.log("Yargs args: ", argv);
 
 if (command === 'add') {
     //console.log("Note added");
-    notes.addNote(argv.title, argv.body);
+    var note = notes.addNote(argv.title, argv.body);
+    console.log("----------------------");
+    if (note) {
+        console.log("Note Added:- ");
+        console.log("Title is : ", note.title);
+        console.log("The Body is : ", note.body);
+    } else {
+        console.log("The note already exist with the title: ", argv.title);
+        console.log("Try using another title!");
+    }
 } else if (command === 'list') {
     //console.log("List of notes");
     notes.getAll();
