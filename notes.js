@@ -1,26 +1,18 @@
 const fs = require('fs');
 
-var notesDataString = fs.readFileSync('./data/notesData.json'); // this is string
-// console.log("Data in json file: ",);
-
-if(notesDataString.toString() === null)
-    notesDataString.toString() = '{}';
-
-var notesDataJSON = JSON.parse(notesDataString);
-console.log("Initial Data",notesDataJSON);
-if(!notesDataJSON.notes)
-    notesDataJSON.notes = [];
-
-// console.log(notesDataJSON.notes.length);
-
 var addNote = (title, body) => {
 
-    notesDataJSON.notes.push({
+    var notes = [];
+    var note = {
         title,
         body
-    });
+    };
 
-    fs.writeFileSync('./data/notesData.json', JSON.stringify(notesDataJSON));
+    var notesDataString = fs.readFileSync('./data/notesData.json');
+    notes = JSON.parse(notesDataString);
+
+    notes.push(note);
+    fs.writeFileSync('./data/notesData.json', JSON.stringify(notes));
     console.log("Note Added:- ");
     console.log("Title is : ", title);
     console.log("The Body is : ", body);
