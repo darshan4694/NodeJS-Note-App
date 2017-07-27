@@ -45,14 +45,19 @@ if (command === 'add') {
     //console.log("List of notes");
     notes.getAll();
 } else if (command === 'read') {
-    // console.log("Reading note");
-    notes.getNote(argv.title);
-} else if (command === 'remove') {
-    // console.log("Removing note");
+    var outputNote = notes.getNote(argv.title);
 
+    console.log("----------------------");
+    if (outputNote) {
+        console.log("Title is : ", outputNote.title);
+        console.log("The Body is : ", outputNote.body);
+    } else {
+        console.log(`The note with title '${argv.title}' does not exist!`);
+    }
+} else if (command === 'remove') {
     var isRemoved = notes.removeNote(argv.title);
     console.log("----------------------");
-    if(isRemoved){
+    if (isRemoved) {
         console.log("The note removed succesfully!");
     } else {
         console.log(`The note with Title: '${argv.title}' does not exist!`);
