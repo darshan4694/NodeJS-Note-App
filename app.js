@@ -26,11 +26,7 @@ const filePath = './data/notesData.json';
 var argv = yargs.argv;
 var command = argv._[0];
 
-console.log("Yargs args: ", argv);
-//console.log(notesData);
-
 if (command === 'add') {
-    //console.log("Note added");
     var note = notes.addNote(argv.title, argv.body);
     console.log("Note Added: ");
     if (note) {
@@ -41,7 +37,7 @@ if (command === 'add') {
     }
 } else if (command === 'list') {
     var allNotes = notes.getAll();
-    console.log("Printing " + allNotes.length +" notes");
+    console.log("Printing " + allNotes.length +" note(s)");
     allNotes.forEach((note) => notes.logData(note));
 } else if (command === 'read') {
     var outputNote = notes.getNote(argv.title);
