@@ -22,8 +22,23 @@ const updateJsonFile = require('update-json-file');
 
 const filePath = './data/notesData.json';
 
-
-var argv = yargs.argv;
+const titleOptions = {
+    describe: 'Title of a note',
+    demand: true,
+    alias: 't'
+};
+const bodyOptions = {
+    describe: 'Body of a note',
+    demand: true,
+    alias: 'b'
+};
+var argv = yargs
+        .command('add', 'Add a new note', {title: titleOptions, body: bodyOptions})
+        .command('read', 'Read an existing note', {title: titleOptions})
+        .command('list', 'List out all existing notes')
+        .command('remove', 'Remove a note', {title:titleOptions})
+        .help()
+        .argv;
 var command = argv._[0];
 
 if (command === 'add') {
