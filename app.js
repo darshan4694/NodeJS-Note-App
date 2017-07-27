@@ -33,7 +33,6 @@ if (command === 'add') {
     //console.log("Note added");
     var note = notes.addNote(argv.title, argv.body);
     console.log("Note Added: ");
-    console.log("----------------------");
     if (note) {
         notes.logData(note);
     } else {
@@ -41,13 +40,14 @@ if (command === 'add') {
         console.log("Try using another title!");
     }
 } else if (command === 'list') {
-    //console.log("List of notes");
-    notes.getAll();
+    var allNotes = notes.getAll();
+    console.log("Printing " + allNotes.length +" notes");
+    allNotes.forEach((note) => notes.logData(note));
 } else if (command === 'read') {
     var outputNote = notes.getNote(argv.title);
 
     console.log("Note Found: ");
-    console.log("----------------------");
+    
     if (outputNote) {
         notes.logData(outputNote);
     } else {
@@ -55,7 +55,7 @@ if (command === 'add') {
     }
 } else if (command === 'remove') {
     var isRemoved = notes.removeNote(argv.title);
-    console.log("----------------------");
+
     if (isRemoved) {
         console.log("The note removed succesfully!");
     } else {

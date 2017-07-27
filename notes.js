@@ -33,7 +33,7 @@ var addNote = (title, body) => {
 };
 
 var getAll = () => {
-    console.log("Getting all Notes...");
+    return fetchNotes();
 };
 
 var getNote = (title) => {
@@ -54,6 +54,7 @@ var removeNote = (title) => {
 };
 
 var logData = (note) => {
+    console.log("----------------------");
     console.log("Title is : ", note.title);
     console.log("The Body is : ", note.body);
 };
