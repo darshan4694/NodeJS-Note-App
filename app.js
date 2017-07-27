@@ -18,23 +18,62 @@ const _ = require('lodash');
 const yargs = require('yargs');
 const notes = require('./notes.js');
 
-var command = process.argv[2];
-var argv = yargs.argv;
+const updateJsonFile = require('update-json-file');
 
-console.log("Yargs args: ", argv);
+const filePath = './data/notesData.json';
 
-if(command === 'add'){
-    //console.log("Note added");
-    notes.addNote(argv.title, argv.body);
-} else if(command === 'list'){
-     //console.log("List of notes");
-     notes.getAll();
-} else if(command === 'read'){
-    // console.log("Reading note");
-    notes.getNote(argv.title);
-} else if(command === 'remove'){
-    // console.log("Removing note");
-    notes.removeNote(argv.title);
-} else{
+const titleOptions = {
+    describe: 'Title of a note',
+    demand: true,
+    alias: 't'
+};
+const bodyOptions = {
+    describe: 'Body of a note',
+    demand: true,
+    alias: 'b'
+};
+var argv = yargs
+        .command('add', 'Add a new note', {title: titleOptions, body: bodyOptions})
+        .command('read', 'Read an existing note', {title: titleOptions})
+        .command('list', 'List out all existing notes')
+        .command('remove', 'Remove a note', {title:titleOptions})
+        .help()
+        .argv;
+var command = argv._[0];
+
+if (command === 'add') {
+    var note = notes.addNote(argv.title, argv.body);
+    console.log("Note Added: ");
+    if (note) {
+        notes.logData(note);
+    } else {
+        console.log("The note already exist with the title: ", argv.title);
+        console.log("Try using another title!");
+    }
+} else if (command === 'list') {
+    var allNotes = notes.getAll();
+    console.log("Printing " + allNotes.length +" note(s)");
+    allNotes.forEach((note) => notes.logData(note));
+} else if (command === 'read') {
+    var outputNote = notes.getNote(argv.title);
+
+    console.log("Note Found: ");
+    
+    if (outputNote) {
+        notes.logData(outputNote);
+    } else {
+        console.log(`The note with title '${argv.title}' does not exist!`);
+    }
+} else if (command === 'remove') {
+    var isRemoved = notes.removeNote(argv.title);
+
+    if (isRemoved) {
+        console.log("The note removed succesfully!");
+    } else {
+        console.log(`The note with Title: '${argv.title}' does not exist!`);
+    }
+} else {
     console.log("Command not recognized");
 }
+
+
