@@ -32,11 +32,10 @@ console.log("Yargs args: ", argv);
 if (command === 'add') {
     //console.log("Note added");
     var note = notes.addNote(argv.title, argv.body);
+    console.log("Note Added: ");
     console.log("----------------------");
     if (note) {
-        console.log("Note Added:- ");
-        console.log("Title is : ", note.title);
-        console.log("The Body is : ", note.body);
+        notes.logData(note);
     } else {
         console.log("The note already exist with the title: ", argv.title);
         console.log("Try using another title!");
@@ -47,10 +46,10 @@ if (command === 'add') {
 } else if (command === 'read') {
     var outputNote = notes.getNote(argv.title);
 
+    console.log("Note Found: ");
     console.log("----------------------");
     if (outputNote) {
-        console.log("Title is : ", outputNote.title);
-        console.log("The Body is : ", outputNote.body);
+        notes.logData(outputNote);
     } else {
         console.log(`The note with title '${argv.title}' does not exist!`);
     }
